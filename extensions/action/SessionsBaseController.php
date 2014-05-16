@@ -6,7 +6,7 @@ use lithium\security\Auth;
 use li3_auth\extensions\data\PersistentSessions;
 
 
-class SessionsBaseController extends \app\extensions\action\Controller {
+class SessionsBaseController extends \li3_fieldwork\extensions\action\Controller {
 
 	
 	protected static $_options;

@@ -1,5 +1,10 @@
-
-	<?php $this->title('Log In'); ?>
+<?php 
+   /**
+    * To customise markup, override this template by creating:
+    * app/views/sessions/add.html.php
+    */
+	$this->title('Log In'); 
+?>
 	
 	<h2>Log In</h2>
 	

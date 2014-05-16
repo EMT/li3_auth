@@ -13,7 +13,7 @@ use fieldwork\access\Access;
 
 
 
-class UsersBaseController extends \app\extensions\action\Controller {
+class UsersBaseController extends \li3_fieldwork\extensions\action\Controller {
 
 	
 	
