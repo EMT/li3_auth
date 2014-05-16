@@ -6,10 +6,10 @@ use lithium\util\Validator;
 use lithium\security\Password;
 use app\models\Users;
 use app\models\UserTokens;
-use fieldwork\email\Email;
+use li3_fieldwork\email\Email;
 
 
-class UsersBase extends \app\extensions\data\Model {
+class UsersBase extends \li3_fieldwork\extensions\data\Model {
     
     
 

@@ -9,7 +9,7 @@
 namespace li3_auth\extensions\action;
 
 use app\models\Users;
-use fieldwork\access\Access;
+use li3_fieldwork\access\Access;
 
 
 
