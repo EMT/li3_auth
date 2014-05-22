@@ -81,11 +81,11 @@ class SessionsBaseController extends \li3_fieldwork\extensions\action\Controller
     */
 
     public function delete() {
-    	if ($this->auth) {
+    	if ($this->request->auth) {
         	Auth::clear('default');
         	//	Destroy persistent login
 			if (static::$_options['persistent_sessions']) {
-    			PersistentSessions::destroy($this->auth->id);
+    			PersistentSessions::destroy($this->request->auth->id);
 			}
         	$this->redirect('/logout');
         }

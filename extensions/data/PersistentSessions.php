@@ -5,7 +5,7 @@ namespace li3_auth\extensions\data;
 use lithium\security\Password;
 use lithium\storage\Session;
 
-class PersistentSessions extends \app\extensions\data\Model {
+class PersistentSessions extends \li3_fieldwork\extensions\data\Model {
 
 	public $validates = [];
 	
