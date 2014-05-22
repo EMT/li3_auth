@@ -20,7 +20,7 @@ class UsersBaseController extends \li3_fieldwork\extensions\action\Controller {
 
 	public function updatePassword() {
 		$user = Users::findById($this->request->id);
-		Access::check($this->auth, ['is_me' => $user, 'is_admin', 'is_super_admin']);
+		Access::check($this->request->auth, ['is_me' => $user, 'is_admin']);
 		if ($this->request->data) {
 			if (empty($this->request->data['current_password'])) {
 				$this->request->data['current_password'] = '1';
@@ -35,7 +35,7 @@ class UsersBaseController extends \li3_fieldwork\extensions\action\Controller {
 	
 	public function newVerifyEmail() {
 		$user = Users::findById($this->request->id);
-		Access::check($this->auth, ['is_me' => $user, 'is_admin', 'is_super_admin']);
+		Access::check($this->request->auth, ['is_me' => $user, 'is_admin']);
 		if ($this->request->data && $user->emailVerifyCode()) {
 			return $this->redirect(['Users::dashboard', 'id' => $user->id]);
 		}
