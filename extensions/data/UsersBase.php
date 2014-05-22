@@ -45,8 +45,13 @@ class UsersBase extends \li3_fieldwork\extensions\data\Model {
 	
 	
 	public function fullName($entity) {
-		return $entity->fname . ' ' . $entity->lname;
-	} 
+		return ucwords($entity->fname . ' ' . $entity->lname);
+	}
+
+
+	public function shortName($entity) {
+		return ucwords($entity->fname . ' ' . substr($entity->lname, 0, 1) . '.');
+	}
 	
 	
    /**
