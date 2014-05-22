@@ -5,6 +5,9 @@ use lithium\action\Dispatcher;
 use lithium\security\Auth;
 
 
+define('LI3_AUTH_PATH', dirname(__DIR__));
+
+
 Dispatcher::applyFilter('run', function($self, $params, $chain) {
 
 	//	Set up authenticated user
@@ -30,7 +33,7 @@ Media::type('default', null, array(
             '{:library}/views/layouts/{:layout}.{:type}.php'
         ),
         'template' => array(
-        	LITHIUM_APP_PATH . '/views/{:controller}/{:template}.{:type}.php',
+        	// LITHIUM_APP_PATH . '/views/{:controller}/{:template}.{:type}.php',
             '{:library}/views/{:controller}/{:template}.{:type}.php'
         ),
         'element'  => array(
