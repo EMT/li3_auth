@@ -5,7 +5,7 @@ namespace li3_auth\extensions\data;
 use lithium\util\Validator;
 use lithium\security\Password;
 use app\models\Users;
-use app\models\UserTokens;
+use li3_auth\models\UserTokens;
 use li3_fieldwork\email\Email;
 
 

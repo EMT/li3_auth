@@ -10,6 +10,7 @@ namespace li3_auth\extensions\action;
 
 use app\models\Users;
 use li3_fieldwork\access\Access;
+use li3_fieldwork\messages\Messages;
 
 
 
@@ -26,6 +27,7 @@ class UsersBaseController extends \li3_fieldwork\extensions\action\Controller {
 				$this->request->data['current_password'] = '1';
 			}
 			if ($user->save($this->request->data)) {
+                Messages::add(['success', 'Your password has been updated.']);
 				return $this->redirect(['Users::edit', 'id' => $user->id]);
 			}
 		}
@@ -73,10 +75,10 @@ class UsersBaseController extends \li3_fieldwork\extensions\action\Controller {
     	if ($this->request->data) {
 			$user = Users::findByEmail($this->request->data['email']);
 	    	if ($user && $user->emailPasswordReset()) {
-				return $this->redirect('/messages/password-email-sent');
+				Messages::add(['success', 'We just sent you an email. Please check your inbox.']);
 	    	}
 	    	else {
-		    	Messages::add('email-not-found');
+		    	Messages::add(['error', 'We don’t have that email address on record. Please check for typos and try again.']);
 	    	}
     	}
     	return array();
@@ -93,16 +95,17 @@ class UsersBaseController extends \li3_fieldwork\extensions\action\Controller {
 	    	if ($this->request->data['password']) {
 				if ($user->save($this->request->data)) {
 					$user->expirePasswordResetCode();
-					return $this->redirect('/messages/password-reset');
+                    Messages::add(['success', 'Your password has been changed and you can now log in with your new one.']);
+					return $this->redirect(['Sessions::add']);
 				}
 			}
     	}
-    	else if (!$user->checkPasswordResetCode($this->request->query['c'])) {
-    		return $this->redirect('/messages/bad-reset-code');
+    	else if (empty($this->request->query['c']) || !$user->checkPasswordResetCode($this->request->query['c'])) {
+    		Messages::add(['error', 'The link in your password reset email has expired. Please start again.']);
     	}
     	
     	if (count($user->errors())) {
-			Messages::add('form-errors');
+			Messages::add(['error', 'Your two passwords didn’t match.']);
 		}
     	
     	$user->code = (isset($this->request->query['c'])) 
