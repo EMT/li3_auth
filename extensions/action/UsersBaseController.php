@@ -102,6 +102,7 @@ class UsersBaseController extends \li3_fieldwork\extensions\action\Controller {
     	}
     	else if (empty($this->request->query['c']) || !$user->checkPasswordResetCode($this->request->query['c'])) {
     		Messages::add(['error', 'The link in your password reset email has expired. Please start again.']);
+            return $this->redirect(['Users::password']);
     	}
     	
     	if (count($user->errors())) {
