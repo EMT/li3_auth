@@ -39,7 +39,7 @@ class UsersBaseController extends \li3_fieldwork\extensions\action\Controller {
 		$user = Users::findById($this->request->id);
 		Access::check($this->request->auth, ['is_me' => $user, 'is_admin']);
 		if ($this->request->data && $user->emailVerifyCode()) {
-			return $this->redirect(['Users::dashboard', 'id' => $user->id]);
+			return compact('user') + ['success' => true];
 		}
 		return compact('user');
 	}
