@@ -58,7 +58,7 @@ class UsersBaseController extends \li3_fieldwork\extensions\action\Controller {
 				//	Flag user as verified & save
 				$user->verified = 1;
 				if ($user->save()) {
-					return $this->redirect(['Users::dashboard', 'id' => $user->id]);
+					return compact('user') + ['success' => true];
 				}
 			}
 			
