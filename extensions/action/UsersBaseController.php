@@ -50,7 +50,6 @@ class UsersBaseController extends \li3_fieldwork\extensions\action\Controller {
     */
 	
 	public function verify() {
-	
 		if (isset($this->request->query['c'])) {
 			$user = Users::findById($this->request->id);
 			
@@ -61,9 +60,9 @@ class UsersBaseController extends \li3_fieldwork\extensions\action\Controller {
 					return compact('user') + ['success' => true];
 				}
 			}
-			
-			throw new \Exception('Bad verification token.');
 		}
+
+        throw new \Exception('Bad verification token.');
 	}
 	
 	
