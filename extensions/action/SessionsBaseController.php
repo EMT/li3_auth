@@ -9,16 +9,6 @@ use li3_auth\extensions\data\PersistentSessions;
 class SessionsBaseController extends \li3_fieldwork\extensions\action\Controller {
 
 	
-	protected static $_options;
-	
-	
-   /**
-    * Set config options
-    */
-	
-	public static function config($config) {
-		static::$_options = $config;
-	}
 	
 	
    /**
