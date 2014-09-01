@@ -23,27 +23,27 @@ Dispatcher::applyFilter('run', function($self, $params, $chain) {
 
 
 
-use lithium\net\http\Media;
+// use lithium\net\http\Media;
 
-Media::type('default', null, array(
-    'view' => 'lithium\template\View',
-    'paths' => array(
-        'layout' => array(
-        	LITHIUM_APP_PATH . '/views/layouts/{:layout}.{:type}.php',
-            '{:library}/views/layouts/{:layout}.{:type}.php'
-        ),
-        'template' => array(
-        	// LITHIUM_APP_PATH . '/views/{:controller}/{:template}.{:type}.php',
-            '{:library}/views/{:controller}/{:template}.{:type}.php'
-        ),
-        'element'  => array(
-        	LITHIUM_APP_PATH . '/views/{:controller}/_{:template}.{:type}.php',
-            LITHIUM_APP_PATH . '/views/elements/{:template}.{:type}.php',
-            '{:library}/views/{:controller}/_{:template}.{:type}.php',
-            '{:library}/views/elements/{:template}.{:type}.php'
-        )
-    )
-));
+// Media::type('default', null, array(
+//     'view' => 'lithium\template\View',
+//     'paths' => array(
+//         'layout' => array(
+//         	LITHIUM_APP_PATH . '/views/layouts/{:layout}.{:type}.php',
+//             '{:library}/views/layouts/{:layout}.{:type}.php'
+//         ),
+//         'template' => array(
+//         	// LITHIUM_APP_PATH . '/views/{:controller}/{:template}.{:type}.php',
+//             '{:library}/views/{:controller}/{:template}.{:type}.php'
+//         ),
+//         'element'  => array(
+//         	LITHIUM_APP_PATH . '/views/{:controller}/_{:template}.{:type}.php',
+//             LITHIUM_APP_PATH . '/views/elements/{:template}.{:type}.php',
+//             '{:library}/views/{:controller}/_{:template}.{:type}.php',
+//             '{:library}/views/elements/{:template}.{:type}.php'
+//         )
+//     )
+// ));
 
 	
 ?>
