@@ -10,6 +10,26 @@ class SessionsBaseController extends \li3_fieldwork\extensions\action\Controller
 
 	
 	protected static $_options;
+
+
+    public function _init() {
+        parent::_init();
+
+        $this->_render['paths'] = array(
+            'template' => array(
+                LITHIUM_APP_PATH . '/views/{:controller}/{:template}.{:type}.php',
+                '{:library}/views/{:controller}/{:template}.{:type}.php',
+            ),
+            'layout' => array(
+                LITHIUM_APP_PATH . '/views/layouts/{:layout}.{:type}.php',
+                '{:library}/views/layouts/{:layout}.{:type}.php',
+            ),
+            'element' => array(
+                LITHIUM_APP_PATH . '/views/elements/{:template}.{:type}.php',
+                '{:library}/views/elements/{:template}.{:type}.php',
+            ),
+        );
+    }
 	
 	
    /**
