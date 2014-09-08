@@ -3,6 +3,7 @@
 
 use lithium\action\Dispatcher;
 use lithium\security\Auth;
+use app\models\Users;
 
 
 define('LI3_AUTH_PATH', dirname(__DIR__));
@@ -13,7 +14,7 @@ Dispatcher::applyFilter('run', function($self, $params, $chain) {
 	//	Set up authenticated user
 	$auth = Auth::check('default');
 	if ($auth) {
-		$params['request']->auth = \app\models\Users::findById($auth['id']);
+		$params['request']->auth = Users::findById($auth['id']);
 	}
 
 	$response = $chain->next($self, $params, $chain);
