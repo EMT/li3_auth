@@ -28,7 +28,7 @@ class UsersBase extends \li3_fieldwork\extensions\data\Model {
 	    $ent = $entity->export();
 		
 		//	Used by the checkPassword validator for checking auth on actions requiring a password
-		$entity->old_password = (!empty($ent['data']['password'])) ? $ent['data']['password'] : null;
+		$entity->_old_password = (!empty($ent['data']['password'])) ? $ent['data']['password'] : null;
 		
 		//	VALIDATION: password validation must be done before hashing
     	if ($options['validate'] && !$entity->validates()) {
@@ -177,7 +177,7 @@ Validator::add('uniqueEmail', function($value, $format, $options){
  * Checks against that the sumbitted password matches the existing password
  */
 Validator::add('checkPassword', function($value, $format, $options){
-   return Password::check($value, $options['values']['old_password']);
+   return Password::check($value, $options['values']['_old_password']);
 });
 
 
