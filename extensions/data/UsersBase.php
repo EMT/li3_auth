@@ -7,6 +7,7 @@ use lithium\security\Password;
 use app\models\Users;
 use li3_auth\models\UserTokens;
 use li3_fieldwork\email\Email;
+use lithium\net\http\Router;
 
 
 class UsersBase extends \li3_fieldwork\extensions\data\Model {
@@ -71,7 +72,7 @@ class UsersBase extends \li3_fieldwork\extensions\data\Model {
 		$url = $pageURL = 'http';
 		$url .= (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === 'on') ? 's' : '';
 		$url .= '://' . $_SERVER["SERVER_NAME"];
-		$url .= '/users/' . $entity->id . '/verify?c=' . $entity->verifyCode();
+		$url .= Router::match(['Users::verify', 'id' => $entity->id, '?' => ['c' => $entity->verifyCode()]]);
 		return $url;
 	}
 	
@@ -113,7 +114,7 @@ class UsersBase extends \li3_fieldwork\extensions\data\Model {
 		$url = $pageURL = 'http';
 		$url .= (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === 'on') ? 's' : '';
 		$url .= '://' . $_SERVER["SERVER_NAME"];
-		$url .= '/users/' . $entity->id . '/reset?c=' . rawurlencode(UserTokens::getNewToken($entity));
+		$url .= Router::match(['Users::reset', 'id' => $entity->id, '?' => ['c' => rawurlencode(UserTokens::getNewToken($entity))]]);
 		return $url;
 	}
 	
@@ -166,7 +167,9 @@ class UsersBase extends \li3_fieldwork\extensions\data\Model {
  * email address does not already exist
  */
 Validator::add('uniqueEmail', function($value, $format, $options){
-	return !Users::first(array('conditions' => array('email' => $value)));
+	var_dump('looking for: ' . $value);
+	var_dump(Users::first(['conditions' => ['email' => $value]]));
+	return !Users::first(['conditions' => ['email' => $value]]);
 });
 
 
