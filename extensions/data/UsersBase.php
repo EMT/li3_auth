@@ -167,8 +167,6 @@ class UsersBase extends \li3_fieldwork\extensions\data\Model {
  * email address does not already exist
  */
 Validator::add('uniqueEmail', function($value, $format, $options){
-	var_dump('looking for: ' . $value);
-	var_dump(Users::first(['conditions' => ['email' => $value]]));
 	return !Users::first(['conditions' => ['email' => $value]]);
 });
 
