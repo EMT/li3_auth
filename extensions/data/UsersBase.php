@@ -163,7 +163,7 @@ class UsersBase extends \li3_fieldwork\extensions\data\Model {
 
 
 /**
- * Checks against the both users and organisations tables and validates if the 
+ * Checks against the both users and projects tables and validates if the 
  * email address does not already exist
  */
 Validator::add('uniqueEmail', function($value, $format, $options){
