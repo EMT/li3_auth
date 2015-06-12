@@ -163,12 +163,17 @@ class UsersBase extends \li3_fieldwork\extensions\data\Model {
 
 
 /**
- * Checks against the both users and organisations tables and validates if the 
+ * Checks against the users table and validates if the 
  * email address does not already exist
  */
 Validator::add('uniqueEmail', function($value, $format, $options){
 	$user = Users::first(['conditions' => ['email' => $value]]);
-	return ($user->id === $options['values']['id']);
+
+	if ($user && (!isset($options['values']['id']) || $user->id !== $options['values']['id'])) {
+		return false;
+	}
+
+	return true;
 });
 
 
